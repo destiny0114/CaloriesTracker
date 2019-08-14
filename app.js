@@ -104,9 +104,10 @@ const ItemCtrl = (function () {
 
       // Create new item
       // Add to items array
-      data.items.push(new Item(ID, name, calories));
+      let newItem = new Item(ID, name, calories);
+      data.items.push(newItem);
 
-      //return newItem;
+      return newItem;
     },
     getItemById: function (id) {
       let found = null;
@@ -340,21 +341,21 @@ const App = (function (ItemCtrl, StorageCtrl, UICtrl) {
 
     // Check for name and calorie input
     if (input.name !== '' && input.calories !== '') {
-      // Add item
+      // // Add item
       const newItem = ItemCtrl.addItem(input.name, input.calories);
 
-      // Add item to UI list
+      // // Add item to UI list
       UICtrl.addListItem(newItem);
 
-      // Get total calories
+      // // Get total calories
       const totalCalories = ItemCtrl.getTotalCalories();
-      // Add total calories to UI
+      // // Add total calories to UI
       UICtrl.showTotalCalories(totalCalories);
 
-      //Store in localStorage
+      // //Store in localStorage
       StorageCtrl.storeItem(newItem);
 
-      // Clear fields
+      // // Clear fields
       UICtrl.clearInput();
     }
 
